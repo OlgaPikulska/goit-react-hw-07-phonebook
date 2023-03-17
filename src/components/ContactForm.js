@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addContact } from "redux/operations";
+import { useSelector } from "react-redux";
+import { selectContacts } from "redux/selectors";
 
 const StyledForm = styled.form`
 border: 1px solid black;
@@ -34,14 +36,35 @@ cursor: pointer;
 
 export const ContactForm = () => {
     const dispatch = useDispatch();
+    const contacts = useSelector(selectContacts);
+
+    const checkName = (name) => {
+        const isNameOnList = contacts.some(contact => contact.name.toLowerCase() === name.toLowerCase())
+        return isNameOnList;
+    }
+
+    const checkNumber = (number) => {
+        const isNumberOnList = contacts.some(contact => contact.number === number)
+        return isNumberOnList;
+    }
+
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.target;
         const name = form.elements.name.value;
         const number = form.elements.number.value;
-        const user = { name, number }
-        dispatch(addContact(user));
+        const isNameOnList = checkName(name);
+        const isNumberOnList = checkNumber(number);
+
+        if (isNameOnList) {
+            alert(`${name} is already in contacts`)
+        } else if (isNumberOnList) {
+            alert(`This number ${number} is already in contacts`)
+        } else {
+            const user = { name, number }
+            dispatch(addContact(user));
+        }
         form.reset();
 
     }

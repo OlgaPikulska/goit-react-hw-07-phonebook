@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchContacts, addContact } from "./operations";
+import { fetchContacts, addContact, deleteContact } from "./operations";
 
 const handlePending = state => {
     state.isLoading = true;
@@ -21,9 +21,9 @@ const contactsSlice = createSlice({
     extraReducers: {
         [fetchContacts.pending]: handlePending,
         [fetchContacts.fulfilled](state, action) {
-            console.log("Fulfilled, data should be in state")
-            console.log(state.items)
-            console.log(action.payload)
+            console.log("Fulfilled fetch, data should be in state")
+            console.log("Fulfilled fetch", state.items)
+            console.log("Fulfilled fetch", action.payload)
             state.isLoading = false;
             state.error = null;
             state.items = action.payload;
@@ -33,12 +33,21 @@ const contactsSlice = createSlice({
         [addContact.rejected]: handleRejected,
 
         [addContact.fulfilled](state, action) {
-            console.log(action.payload);
+            console.log("Fulfilled add", action.payload);
             state.isLoading = false;
             state.error = null;
             state.items.push(action.payload);
         },
+        [deleteContact.pending]: handlePending,
+        [deleteContact.rejected]: handleRejected,
 
+        [deleteContact.fulfilled](state, action) {
+            console.log("Fulfilled delete", action.payload);
+            state.isLoading = false;
+            state.error = null;
+            const index = state.items.findIndex(contact => contact.id === action.payload);
+            state.items.splice(index, 1)
+        },
     }
 })
 
