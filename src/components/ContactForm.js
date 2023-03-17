@@ -32,7 +32,7 @@ cursor: pointer;
 
 export const ContactForm = () => {
     return (
-        <StyledForm onSubmit={handleSubmit}>
+        <StyledForm>
             <StyledLabel>
                 Name
                 <StyledInput
