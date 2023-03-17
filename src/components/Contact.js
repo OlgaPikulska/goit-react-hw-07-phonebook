@@ -14,9 +14,9 @@ font-weight:bold;
 
 export const Contact = ({ contact }) => {
     const dispatch = useDispatch();
-    console.log("Contact", contact);
+    //console.log("Contact", contact);
     const handleDelete = () => {
-        console.log(contact.id)
+        console.log("After delete", contact.id)
         dispatch(deleteContact(contact.id))
     }
     return (
