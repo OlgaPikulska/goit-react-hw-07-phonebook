@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { StyledButton } from "./ContactForm";
 import { useDispatch } from "react-redux";
 import { deleteContact } from "redux/operations";
-//import PropTypes from "prop-types"
+import PropTypes from "prop-types"
 
 const StyledNumber = styled.span`
 margin-right: 5px;
@@ -14,9 +14,7 @@ font-weight:bold;
 
 export const Contact = ({ contact }) => {
     const dispatch = useDispatch();
-    //console.log("Contact", contact);
     const handleDelete = () => {
-        console.log("After delete", contact.id)
         dispatch(deleteContact(contact.id))
     }
     return (
@@ -31,6 +29,6 @@ export const Contact = ({ contact }) => {
     )
 }
 
-// Contact.propTypes = {
-//     contact: PropTypes.object.isRequired
-// }
+Contact.propTypes = {
+    contact: PropTypes.object.isRequired
+}

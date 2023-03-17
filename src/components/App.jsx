@@ -6,6 +6,11 @@ import { selectError, selectIsLoading } from "redux/selectors";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchContacts } from "redux/operations";
+import styled from "styled-components";
+
+const StyledNotification = styled.b`
+display: inline-block;
+padding: 20px;`
 
 export const App = () => {
   const dispatch = useDispatch();
@@ -22,7 +27,10 @@ export const App = () => {
       </Section>
       <Section title="Contacts">
         <Filter />
-        {isLoading && !error && <b>Request in progress...</b>}
+        {isLoading && !error &&
+          <StyledNotification>
+            Request in progress...
+          </StyledNotification>}
         <ContactList />
       </Section>
     </>

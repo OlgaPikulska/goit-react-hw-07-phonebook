@@ -37,12 +37,10 @@ const contactsSlice = createSlice({
         [deleteContact.rejected]: handleRejected,
 
         [deleteContact.fulfilled](state, action) {
-            console.log("Fulfilled delete", state.items);
             state.isLoading = false;
             state.error = null;
             const index = state.items.findIndex(contact => contact.id === action.payload);
             state.items.splice(index, 1)
-            console.log("na końcu", state.items)
         },
     }
 })
