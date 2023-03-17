@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { StyledButton } from "./ContactForm";
 //import PropTypes from "prop-types"
 
 const StyledNumber = styled.span`
@@ -10,12 +11,13 @@ font-weight:bold;
 `
 
 export const Contact = ({ contact }) => {
+    console.log("Contact", contact)
     return (
         <>
             <StyledName>{contact.name}</StyledName>
             <StyledNumber>{contact.number}</StyledNumber>
-            <StyledButton
-                onClick={handleDelete}>
+            <StyledButton>
+                {/* onClick={handleDelete}> */}
                 Delete
             </StyledButton>
         </>

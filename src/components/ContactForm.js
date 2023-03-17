@@ -40,7 +40,8 @@ export const ContactForm = () => {
         const form = e.target;
         const name = form.elements.name.value;
         const number = form.elements.number.value;
-        dispatch(addContact({ name, number }));
+        const user = { name, number }
+        dispatch(addContact(user));
         form.reset();
 
     }
