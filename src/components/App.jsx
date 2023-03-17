@@ -1,4 +1,5 @@
 import { ContactForm } from "./ContactForm";
+import { Filter } from "./Filter";
 import { Section } from "./Section";
 
 export const App = () => {
@@ -7,7 +8,9 @@ export const App = () => {
       <Section title="Phonebook">
         <ContactForm />
       </Section>
-      <Section title="Contacts"></Section>
+      <Section title="Contacts">
+        <Filter />
+      </Section>
     </>
   );
 };
